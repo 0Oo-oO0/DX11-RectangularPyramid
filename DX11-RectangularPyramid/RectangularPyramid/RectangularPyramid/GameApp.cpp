@@ -86,7 +86,7 @@ void GameApp::DrawScene()
 	m_pd3dImmediateContext->ClearRenderTargetView(m_pRenderTargetView.Get(), reinterpret_cast<const float*>(&black));
 	m_pd3dImmediateContext->ClearDepthStencilView(m_pDepthStencilView.Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 
-	m_pd3dImmediateContext->DrawIndexed(36, 0, 0);
+	m_pd3dImmediateContext->DrawIndexed(18, 0, 0);
 	HR(m_pSwapChain->Present(0, 0));
 }
 
@@ -146,19 +146,13 @@ bool GameApp::InitResource()
 	// 索引数组
 	WORD indices[] = {
 		//斜面
-		0, 1, 2, 
 		2, 1, 0,
-		0, 2, 3,
 		3, 2, 0,
-		0, 3, 4,
 		4, 3, 0,
-		0, 4, 1,
-		1, 4, 0,//有疑问的地方是为什么我用四个三角形去画斜面会造成某个角度会形成透视，而八个却不会。
+		1, 4, 0,
 		//底面
-		1, 4, 2,
-		2, 3, 4,
-		1, 2, 4,
-		4, 3, 2 //底面也是一样两个会，而四个不会。
+		1, 2, 3,
+		3, 4, 1
 	};
 	// 设置索引缓冲区描述
 	D3D11_BUFFER_DESC ibd;
